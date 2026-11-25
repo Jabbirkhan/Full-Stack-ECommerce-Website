@@ -67,7 +67,7 @@ const Checkout = () => {
                 const idempotencyKey = sessionStorage.getItem("stripeCheckoutKey") || crypto.randomUUID();
                 sessionStorage.setItem("stripeCheckoutKey", idempotencyKey);
 
-                const response = await axiosInstance.post(`/api/v1/user/placestripeorder`, orderData, idempotencyKey);
+                const response = await axiosInstance.post(`/api/v1/user/placestripeorder`, { ...orderData, idempotencyKey });
                 if (response.data.success) {
                     // window.location.href = response.data.session_url;
                     const { session_url } = response.data;

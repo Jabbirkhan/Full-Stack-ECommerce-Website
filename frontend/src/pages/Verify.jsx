@@ -20,11 +20,13 @@ const Verify = () => {
     try {
       if (authState === 'unauthenticated') {
         navigate('/login');
+        window.location.reload();
         return;
       }
 
       if (canceled === "true" || !orderId) {
         navigate("/cart");
+        window.location.reload();
         return;
       }
 
@@ -36,6 +38,7 @@ const Verify = () => {
       } else {
         toast.error(response.data.message || "Unable to verify payment");
         navigate('/cart');
+        window.location.reload();
       }
 
     } catch (error) {

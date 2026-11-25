@@ -110,7 +110,6 @@ const Products = () => {
       const response = await axiosInstance.get(`/api/v1/user/products?${params.toString()}`);
       if (response.data.success) {
         setProducts(response.data.products);
-        console.log("Current Products", response.data.products);
         setTotalProducts(response.data.totalProducts);
         setTotalPages(response.data.totalPages);
         setPage(response.data.currentPage);

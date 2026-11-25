@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 const Cart = () => {
 
   const { products, cartItems, updateQuantity, navigate, cartData, setCartData } = useContext(Context);
-
+  
   useEffect(() => {
     const tempData = [];
     for (const itemId in cartItems) {
@@ -31,7 +31,7 @@ const Cart = () => {
       <div className='w-full h-screen flex justify-center items-center bg-gray-900'>
         <div className='flex flex-col'>
           <h2 className='mb-5 text-white'>No products exist yet</h2>
-          <Link to='/products' className='px-2 py-2 bg-blue-500 text-white text-center rounded-md hover:bg-blue-600 transition-all duration-200'>Add Product</Link>
+          <Link to='/products' className='px-2 py-2 bg-blue-500 text-white text-center rounded-md hover:bg-blue-600 transition-all duration-200'>View Products</Link>
         </div>
       </div>
     );
@@ -51,6 +51,11 @@ const Cart = () => {
 
       {cartData.map((item, index) => {
         const productData = products.find((product) => product._id === item._id);
+
+        if(!productData){
+          return navigate('/products');
+        }
+
         return (
           <div key={index} className='flex flex-col sm:flex-row items-center border-b border-gray-300 pb-3 mb-5 px-4'>
 
